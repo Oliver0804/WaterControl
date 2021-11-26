@@ -2047,8 +2047,8 @@ int main(void)
  8000e8e:	601a      	str	r2, [r3, #0]
  8000e90:	e029      	b.n	8000ee6 <main+0x3a6>
      }else{
-    	 if(lastH2==1){
- 8000e92:	4b24      	ldr	r3, [pc, #144]	; (8000f24 <main+0x3e4>)
+    	 if(lastH8==1){
+ 8000e92:	4b2b      	ldr	r3, [pc, #172]	; (8000f40 <main+0x400>)
  8000e94:	681b      	ldr	r3, [r3, #0]
  8000e96:	2b01      	cmp	r3, #1
  8000e98:	d125      	bne.n	8000ee6 <main+0x3a6>

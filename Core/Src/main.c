@@ -215,7 +215,7 @@ int main(void)
 
     	 lastH8=1;
      }else{
-    	 if(lastH2==1){
+    	 if(lastH8==1){
     		 HAL_GPIO_WritePin(H8_Alarm_LED_GPIO_Port,H8_Alarm_LED_Pin, HIGH);
 
         	 HAL_GPIO_WritePin(RELAY_2_GPIO_Port, RELAY_2_Pin, LOW);
