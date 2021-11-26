@@ -62,6 +62,7 @@ int auto_run=1;
 int state=0;
 int lastH1=0;
 int lastH2=0;
+int lastH8=0;
 #define delayOnTimerMax 30
 #define HIGH 1
 #define LOW 0
@@ -168,6 +169,8 @@ int main(void)
       }
      if(HAL_GPIO_ReadPin(H1_GPIO_Port, H1_Pin)==0){//H1觸發
     	 HAL_GPIO_WritePin(RELAY_3_GPIO_Port, RELAY_3_Pin, HIGH);
+
+    	 HAL_GPIO_WritePin(H9_LED_GPIO_Port, H9_LED_Pin, LOW);
     	 lastH1=1;
     	 if(delayOnTimer<setDelayOnTimer){
     		 delayOnTimer++;
@@ -176,6 +179,9 @@ int main(void)
     	 delayOnTimer=0;
     	 if(lastH1==1){
     	 HAL_GPIO_WritePin(RELAY_3_GPIO_Port, RELAY_3_Pin, LOW);
+
+    	 HAL_GPIO_WritePin(H9_LED_GPIO_Port, H9_LED_Pin, LOW);
+
     	 lastH1=0;
     	 }
      }
@@ -199,7 +205,26 @@ int main(void)
     	 lastH2=0;
     	 }
      }
+     if(HAL_GPIO_ReadPin(H8_Sync_GPIO_Port, H8_Sync_Pin)==0){//H8 Sync 觸發
+    	 HAL_GPIO_WritePin(H8_Alarm_LED_GPIO_Port,H8_Alarm_LED_Pin, LOW);
 
+    	 HAL_GPIO_WritePin(RELAY_2_GPIO_Port, RELAY_2_Pin, HIGH);
+    	 HAL_GPIO_WritePin(RELAY_3_GPIO_Port, RELAY_3_Pin, HIGH);
+    	 HAL_GPIO_WritePin(RELAY_4_GPIO_Port, RELAY_4_Pin, HIGH);
+    	 HAL_GPIO_WritePin(RELAY_5_GPIO_Port, RELAY_5_Pin, HIGH);
+
+    	 lastH8=1;
+     }else{
+    	 if(lastH2==1){
+    		 HAL_GPIO_WritePin(H8_Alarm_LED_GPIO_Port,H8_Alarm_LED_Pin, HIGH);
+
+        	 HAL_GPIO_WritePin(RELAY_2_GPIO_Port, RELAY_2_Pin, LOW);
+        	 HAL_GPIO_WritePin(RELAY_3_GPIO_Port, RELAY_3_Pin, LOW);
+        	 HAL_GPIO_WritePin(RELAY_4_GPIO_Port, RELAY_4_Pin, LOW);
+        	 HAL_GPIO_WritePin(RELAY_5_GPIO_Port, RELAY_5_Pin, LOW);
+    	 lastH8=0;
+    	 }
+     }
      //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
 	 HAL_Delay(100);
 
